@@ -119,6 +119,19 @@ class RequestClient(object):
         response = call_sync(self.request_impl.get_candlestick_data(symbol, interval, startTime, endTime, limit))
         self.refresh_limits(response[1])
         return response[0]
+
+    def get_index_candlestick_data(self, symbol: 'str', interval: 'CandlestickInterval',
+                            startTime: 'long' = None, endTime: 'long' = None, limit: 'int' = None) -> any:
+        """
+        Kline/Candlestick Data (MARKET_DATA)
+
+        GET /fapi/v1/indexPriceKlines
+
+        Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time.
+        """
+        response = call_sync(self.request_impl.get_index_candlestick_data(symbol, interval, startTime, endTime, limit))
+        self.refresh_limits(response[1])
+        return response[0]
             
     def get_mark_price(self, symbol: 'str' = None) -> any:
         """
